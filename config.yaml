@@ -1,0 +1,407 @@
+dbs:
+  public: meta_data
+  user: huxiaoou_private
+path_calendar: /root/workspace/Data/huxo/input/calendar/cne_calendar.csv
+
+classification:
+  c0: # must be unique in the project
+    BLK:
+      - RB9999_SHFE
+      - HC9999_SHFE
+      - I9999_DCE
+      - J9999_DCE
+      - JM9999_DCE
+      - ZC9999_CZCE
+      - SM9999_CZCE
+      - SF9999_CZCE
+    MTL:
+      - CU9999_SHFE
+      - BC9999_INE
+      - AL9999_SHFE
+      - AO9999_SHFE
+      - AD9999_SHFE
+      - ZN9999_SHFE
+      - PB9999_SHFE
+      - SN9999_SHFE
+      - LC9999_GFEX
+      - SI9999_GFEX
+      - PS9999_GFEX
+      - NI9999_SHFE
+      - SS9999_SHFE
+    PMT:
+      - AU9999_SHFE
+      - AG9999_SHFE
+      - PD9999_GFEX
+      - PT9999_GFEX
+    ENG:
+      - SC9999_INE
+      - LU9999_INE
+      - FU9999_SHFE
+      - BU9999_SHFE
+      - PG9999_DCE
+      - PX9999_CZCE
+      - TA9999_CZCE
+      - EG9999_DCE
+      - PR9999_CZCE
+      - PF9999_CZCE
+      - EB9999_DCE
+      - BZ9999_DCE
+      - L9999_DCE
+      - PP9999_DCE
+      - PL9999_CZCE
+      - UR9999_CZCE
+      - MA9999_CZCE
+      - SH9999_CZCE
+      - RU9999_SHFE
+      - BR9999_SHFE
+      - NR9999_INE
+      - FG9999_CZCE
+      - SA9999_CZCE
+      - V9999_DCE
+    OIP:
+      - SP9999_SHFE
+      - LG9999_DCE
+      - FB9999_DCE
+      - OP9999_SHFE
+    AGR:
+      - LH9999_DCE
+      - JD9999_DCE
+      - PK9999_CZCE
+      - CJ9999_CZCE
+      - AP9999_CZCE
+      - C9999_DCE
+      - CS9999_DCE
+      - RR9999_DCE
+      - A9999_DCE
+      - B9999_DCE
+      - Y9999_DCE
+      - M9999_DCE
+      - RS9999_CZCE
+      - OI9999_CZCE
+      - RM9999_CZCE
+      - P9999_DCE
+      - CF9999_CZCE
+      - CY9999_CZCE
+      - SR9999_CZCE
+    FRG:
+      - EC9999_INE
+  c1:
+    AUG:
+      - AU9999_SHFE
+      - AG9999_SHFE
+    MTL:
+      - CU9999_SHFE
+      - AL9999_SHFE
+      - PB9999_SHFE
+      - ZN9999_SHFE
+      - NI9999_SHFE
+      - SN9999_SHFE
+      - SS9999_SHFE
+      - AO9999_SHFE
+    OIL:
+      - A9999_DCE
+      - B9999_DCE
+      - M9999_DCE
+      - P9999_DCE
+      - Y9999_DCE
+      - OI9999_CZCE
+      - RM9999_CZCE
+    CHM:
+      - RU9999_SHFE
+      - BR9999_SHFE
+      - BU9999_SHFE
+      - FU9999_SHFE
+      - L9999_DCE
+      - V9999_DCE
+      - EB9999_DCE
+      - EG9999_DCE
+      - PP9999_DCE
+      - PG9999_DCE
+      - MA9999_CZCE
+      - TA9999_CZCE
+    BLK:
+      - RB9999_SHFE
+      - HC9999_SHFE
+      - I9999_DCE
+      - J9999_DCE
+      - JM9999_DCE
+      - SF9999_CZCE
+      - SM9999_CZCE
+      - ZC9999_CZCE
+      - FG9999_CZCE
+      - SA9999_CZCE
+      - UR9999_CZCE
+    AGR:
+      - AP9999_CZCE
+      - CF9999_CZCE
+      - SR9999_CZCE
+      - CY9999_CZCE
+      - CJ9999_CZCE
+      - PK9999_CZCE
+      - JD9999_DCE
+      - LH9999_DCE
+      - C9999_DCE
+      - CS9999_DCE
+  c2:
+    STL: # 钢铁
+      - I9999_DCE # 铁矿石
+      - RB9999_SHFE # 螺纹钢
+      - HC9999_SHFE # 热卷
+    BDM: # 建材
+      - RB9999_SHFE # 螺纹钢
+      - FG9999_CZCE # 玻璃
+      - V9999_DCE # PVC
+      - LG9999_DCE # 原木
+    COL: # 煤炭
+      - JM9999_DCE # 焦煤
+      - J9999_DCE # 焦炭
+      - ZC9999_CZCE # 动力煤
+    BLK: # 黑链
+      - JM9999_DCE # 焦煤
+      - J9999_DCE # 焦炭
+      - I9999_DCE # 铁矿石
+      - RB9999_SHFE # 螺纹钢
+      - HC9999_SHFE # 热卷
+      - SM9999_CZCE # 锰硅
+      - SF9999_CZCE # 硅铁
+      - ZC9999_CZCE # 动力煤
+    FEA: # 铁合金
+      - SM9999_CZCE # 锰硅
+      - SF9999_CZCE # 硅铁
+    NEG: # 新能源
+      - LC9999_GFEX # 碳酸锂
+      - SN9999_SHFE # 锡
+      - NI9999_SHFE # 镍
+      - CU9999_SHFE # 铜
+      - AL9999_SHFE # 铝
+      - SI9999_GFEX # 工业硅
+      - PS9999_GFEX # 多晶硅
+    PLC: # 塑化链
+      - L9999_DCE # 塑料
+      - PP9999_DCE # 聚丙烯
+      - V9999_DCE # PVC
+      - BR9999_SHFE # 丁二烯橡胶
+      - PL9999_CZCE # 丙烯
+    POC: # 聚酯链
+      - TA9999_CZCE # PTA
+      - EG9999_DCE # 乙二醇
+      - PF9999_CZCE # 短纤
+      - PX9999_CZCE # 对二甲苯
+      - PR9999_CZCE # 瓶片
+    GRN: # 谷物
+      - C9999_DCE # 玉米
+    FED: # 饲料
+      - M9999_DCE # 豆粕
+      - RM9999_CZCE # 菜粕
+      - C9999_DCE # 玉米
+    SFT: # 软商品
+      - CF9999_CZCE # 棉花
+      - SR9999_CZCE # 白糖
+      - CJ9999_CZCE # 红枣
+      - AP9999_CZCE # 苹果
+      - CY9999_CZCE # 棉纱
+    OIL: # 油脂链
+      - A9999_DCE # 豆一
+      - B9999_DCE # 豆二
+      - Y9999_DCE # 豆油
+      - M9999_DCE # 豆粕
+      - OI9999_CZCE # 菜籽油
+      - RM9999_CZCE # 菜粕
+      - P9999_DCE # 棕榈油
+      - PK9999_CZCE # 花生
+    BRD: # 养殖链
+      - LH9999_DCE # 生猪
+      - JD9999_DCE # 鸡蛋
+      - C9999_DCE # 玉米
+      - M9999_DCE # 豆粕
+      - RM9999_CZCE # 菜粕
+    CPI:
+      - P9999_DCE # 棕榈油
+      - A9999_DCE # 豆一
+      - C9999_DCE # 玉米
+      - Y9999_DCE # 豆油
+      - OI9999_CZCE # 菜籽油
+      - LH9999_DCE # 生猪
+      - JD9999_DCE # 鸡蛋
+      - CF9999_CZCE # 棉花
+      - SR9999_CZCE # 白糖
+      - SC9999_INE # 原油
+      - PG9999_DCE # LPG
+      - CS9999_DCE # 玉米淀粉
+      - OP9999_SHFE # 双胶纸
+      - PF9999_CZCE # 短纤
+      - PR9999_CZCE # 瓶片
+      - PP9999_DCE # PP/聚丙烯
+      - L9999_DCE # 塑料
+      - AP9999_CZCE # 苹果
+      - CY9999_CZCE # 棉纱
+    PPI:
+      - J9999_DCE # 焦炭
+      - JM9999_DCE # 焦煤
+      - CU9999_SHFE # 铜
+      - AL9999_SHFE # 铝
+      - ZN9999_SHFE # 锌
+      - PB9999_SHFE # 铅
+      - SN9999_SHFE # 锡
+      - NI9999_SHFE # 镍
+      - I9999_DCE # 铁矿
+      - ZC9999_CZCE # 动力煤
+      - SC9999_INE # 原油
+      - EC9999_INE # 集运欧线
+      - AO9999_SHFE # 氧化铝
+      - LG9999_DCE # 原木
+      - PG9999_DCE # LPG
+    IMT: # 进口依赖度
+      - CU9999_SHFE # 铜
+      - I9999_DCE # 铁矿石
+      - SC9999_INE # 原油
+      - A9999_DCE # 豆一
+      - C9999_DCE # 玉米
+      - NI9999_SHFE # 镍
+      - LC9999_GFEX # 碳酸锂
+      - P9999_DCE # 棕榈油
+      - RU9999_SHFE # 天然橡胶
+      - SR9999_CZCE # 白糖
+      - LG9999_DCE # 原木
+      - BZ9999_DCE # 纯苯
+      - PX9999_CZCE # 对二甲苯
+      - PG9999_DCE # LPG
+      - NR9999_INE # 20号胶
+    RTS: # 利率影响
+      - AU9999_SHFE # 黄金
+      - AG9999_SHFE # 白银
+      - PD9999_GFEX # 钯金
+      - PT9999_GFEX # 铂金
+    ELT: # 电力影响
+      - AL9999_SHFE # 铝
+      - V9999_DCE # PVC
+      - SI9999_GFEX # 工业硅
+      - PS9999_GFEX # 多晶硅
+      - SF9999_CZCE # 硅铁
+      - SM9999_CZCE # 锰硅
+      - NI9999_SHFE # 镍
+    MAC: # 宏观
+      - AU9999_SHFE # 黄金
+      - AG9999_SHFE # 白银
+      - SC9999_INE # 原油
+      - PD9999_GFEX # 钯金
+      - PT9999_GFEX # 铂金
+      - EC9999_INE # 集运欧线
+      - CU9999_SHFE # 铜
+    HOU: # 房地产
+      - CU9999_SHFE # 铜
+      - ZN9999_SHFE # 锌
+      - AL9999_SHFE # 铝
+      - RB9999_SHFE # 螺纹钢
+      - WR9999_SHFE # 线材
+      - HC9999_SHFE # 热轧卷
+      - FG9999_CZCE # 玻璃
+      - V9999_DCE # PVC
+      - PP9999_DCE # PP
+      - EB9999_DCE # 苯乙烯
+      - I9999_DCE # 铁矿石
+      - SS9999_SHFE # 不锈钢
+      - LG9999_DCE # 原木
+      - PL9999_CZCE # 丙烯
+      - BZ9999_DCE # 纯苯
+    INF: # 基建
+      - BU9999_SHFE # 沥青
+      - ZN9999_SHFE # 锌
+      - RB9999_SHFE # 螺纹钢
+      - V9999_DCE # PVC
+    IND: # 工业品
+      - CU9999_SHFE # 铜
+      - AL9999_SHFE # 铝
+      - ZN9999_SHFE # 锌
+      - PB9999_SHFE # 铅
+      - NI9999_SHFE # 镍
+      - RB9999_SHFE # 螺纹钢
+      - FG9999_CZCE # 玻璃
+      - RU9999_SHFE # 橡胶
+      - L9999_DCE # 塑料
+      - V9999_DCE # PVC
+      - TA9999_CZCE # PTA
+      - MA9999_CZCE # 甲醇
+      - PP9999_DCE # 聚丙烯
+      - JM9999_DCE # 焦煤
+      - J9999_DCE # 焦炭
+      - I9999_DCE # 铁矿石
+      - BU9999_SHFE # 沥青
+      - HC9999_SHFE # 热卷
+      - SM9999_CZCE # 锰硅
+      - SF9999_CZCE # 硅铁
+      - SC9999_INE # 原油
+      - FU9999_SHFE # 燃料油
+      - SP9999_SHFE # 纸浆
+      - EG9999_DCE # 乙二醇
+      - UR9999_CZCE # 尿素
+      - EB9999_DCE # 苯乙烯
+      - NR9999_INE # 20号胶
+      - SA9999_CZCE # 纯碱
+      - SN9999_SHFE # 锡
+      - SS9999_SHFE # 不锈钢
+      - PG9999_DCE # LPG
+      - LU9999_INE # 低硫燃料油
+      - PF9999_CZCE # 短纤
+      - SI9999_GFEX # 工业硅
+      - AO9999_SHFE # 氧化铝
+      - AD9999_SHFE # 铝合金
+      - OP9999_SHFE # 双胶纸
+      - BZ9999_DCE # 纯苯
+      - PL9999_CZCE # 丙烯
+      - PX9999_CZCE # 对二甲苯
+      - PR9999_CZCE # 瓶片
+      - SH9999_CZCE # 烧碱
+    LQC: # 液体化工
+      - EG9999_DCE # 乙二醇
+      - MA9999_CZCE # 甲醇
+      - EB9999_DCE # 苯乙烯
+      - BZ9999_DCE # 纯苯
+      - PL9999_CZCE # 丙烯
+      - PX9999_CZCE # 对二甲苯
+      - PG9999_DCE # LPG
+      - SH9999_CZCE # 烧碱
+    SLC: # 固体化工
+      - PP9999_DCE # PP
+      - V9999_DCE # PVC
+      - TA9999_CZCE # PTA
+      - PR9999_CZCE # 瓶片
+    OIC: # 油化工
+      - TA9999_CZCE # PTA
+      - EB9999_DCE # 苯乙烯
+      - L9999_DCE # 塑料
+      - PP9999_DCE # PP
+      - EG9999_DCE # 乙二醇
+      - PF9999_CZCE # 短纤
+      - BR9999_SHFE # 丁二烯橡胶
+      - BZ9999_DCE # 纯苯
+      - PL9999_CZCE # 丙烯
+      - PX9999_CZCE # 对二甲苯
+      - PG9999_DCE # LPG
+      - PR9999_CZCE # 瓶片
+    CLC: # 煤化工
+      - UR9999_CZCE # 尿素
+      - MA9999_CZCE # 甲醇
+      - PP9999_DCE # PP
+      - L9999_DCE # 塑料
+      - EG9999_DCE # 乙二醇
+      - V9999_DCE # PVC
+      - PL9999_CZCE # 丙烯
+src_tables:
+  pv:
+    db_name: "meta_data"
+    table_name: "future_bar_1day_aft"
+    fields:
+      - "turnover"
+      - "pre_close_ret"
+    lag: 20
+    data_view_type: data3d
+  pv1m:
+    db_name: "meta_data"
+    table_name: "future_bar_1min"
+    fields:
+      - "turnover"
+      - "pre_close_ret"
+      - "trade_day"
+    lag: 1
+    data_view_type: data3d
