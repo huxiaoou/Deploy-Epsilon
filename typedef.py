@@ -67,6 +67,10 @@ class CTarget:
     def get_data_desc(self, db_name: str) -> CDataDescriptor:
         return self.clsf.get_save_data_desc(db_name, self.freq)
 
+    @property
+    def callsign(self) -> str:
+        return f"{self.clsf.comb_name(self.freq)}"
+
 
 @dataclass(frozen=True)
 class CCfgOptimizer:

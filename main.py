@@ -46,6 +46,7 @@ if __name__ == "__main__":
             dst_db=data_desc_optimize.db_name,
             table_optimize=data_desc_optimize.table_name,
         )
+        logger.info(f"{SFG('Optimization')} for {SFG(cfg.target.callsign)} finished")
     elif args.command == "sig":
         from solutions.signals import main_process_signals_sec_opt
 
@@ -58,3 +59,4 @@ if __name__ == "__main__":
             dst_db=data_desc_sig_opt.db_name,
             table_sig_opt=data_desc_sig_opt.table_name,
         )
+        logger.info(f"{SFG('Signals')} for {SFG(cfg.target.callsign)} optimized")
