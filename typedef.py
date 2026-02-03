@@ -60,7 +60,13 @@ TClassifications = dict[TName, CSectorClassification]
 
 
 @dataclass(frozen=True)
+class CTarget:
+    freq: TFreq
+    clsf: CSectorClassification
+
+
+@dataclass(frozen=True)
 class CCfg:
     dbs: CCfgDbs
     path_calendar: str
-    classifications: TClassifications
+    target: CTarget

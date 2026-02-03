@@ -3,6 +3,10 @@ dbs:
   user: huxiaoou_private
 path_calendar: /root/workspace/Data/huxo/input/calendar/cne_calendar.csv
 
+target:
+  name: c2
+  freq: d
+
 classification:
   c0: # must be unique in the project
     BLK:

@@ -1,7 +1,7 @@
 import yaml
 from qtools_sxzq.qdata import CDataDescriptor
 from typedef import TName, TClsData
-from typedef import CCfgDbs, CSectorClassification, TClassifications
+from typedef import CCfgDbs, CTarget, CSectorClassification, TClassifications
 from typedef import CCfg
 
 with open("config.yaml", "r") as f:
@@ -13,10 +13,14 @@ for cls_name, cls_data in _config["classification"].items():
     cls_data: TClsData
     d[cls_name] = CSectorClassification(name=cls_name, data=cls_data)
 
+
 cfg = CCfg(
     dbs=CCfgDbs(**_config["dbs"]),
     path_calendar=_config["path_calendar"],
-    classifications=d,
+    target=CTarget(
+        freq=_config["target"]["freq"],
+        clsf=d[_config["target"]["name"]],
+    ),
 )
 
 """
