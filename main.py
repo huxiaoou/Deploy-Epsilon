@@ -21,7 +21,7 @@ if __name__ == "__main__":
     import sys
     from logbook import Logger, StreamHandler, set_datetime_format
     from qtools_sxzq.qwidgets import SFG
-    from config import cfg, data_desc_pv, data_desc_pv1m
+    from config import cfg, data_desc_sector, data_desc_optimize
 
     StreamHandler(sys.stdout).push_application()
     set_datetime_format("local")
@@ -34,3 +34,14 @@ if __name__ == "__main__":
     if not validate_args(bgn, end, calendar=calendar):
         sys.exit(-1)
     span: tuple[str, str] = bgn, end
+
+    if args.command == "optimize":
+        from solutions.optimize import main_process_optimize_sec_wgt
+
+        main_process_optimize_sec_wgt(
+            span=span,
+            cfg_optimizer=cfg.optimizer,
+            data_desc_sector=data_desc_sector,
+            dst_db=data_desc_optimize.db_name,
+            table_optimize=data_desc_optimize.table_name,
+        )

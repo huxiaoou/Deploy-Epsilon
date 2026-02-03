@@ -23,7 +23,7 @@ class CSectorClassification:
     data: TClsData
 
     def comb_name(self, freq: TFreq) -> str:
-        return f"{self.name}-{freq}"
+        return f"{self.name}_{freq}"
 
     @property
     def instru_map(self) -> TInstruMap:
@@ -48,10 +48,10 @@ class CSectorClassification:
     def get_save_data_desc(self, db_name: str, freq: TFreq) -> CDataDescriptor:
         return CDataDescriptor(
             db_name=db_name,
-            table_name=f"sector_{self.name}_{freq}",
+            table_name=f"sector_{self.comb_name(freq)}",
             codes=self.sectors,
             fields=["ret", "close"],
-            lag=20,
+            lag=365,
             data_view_type="data3d",
         )
 
@@ -64,9 +64,25 @@ class CTarget:
     freq: TFreq
     clsf: CSectorClassification
 
+    def get_data_desc(self, db_name: str) -> CDataDescriptor:
+        return self.clsf.get_save_data_desc(db_name, self.freq)
+
+
+@dataclass(frozen=True)
+class CCfgOptimizer:
+    window: int
+    lbd: float
+
 
 @dataclass(frozen=True)
 class CCfg:
+    pid: str
+    vid: str
     dbs: CCfgDbs
     path_calendar: str
     target: CTarget
+    optimizer: CCfgOptimizer
+
+    @property
+    def table_optimize(self) -> str:
+        return f"{self.pid}_tbl_optimize_{self.vid}"

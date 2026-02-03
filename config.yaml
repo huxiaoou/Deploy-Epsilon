@@ -1,3 +1,5 @@
+project_id: epsilon
+version_id: main
 dbs:
   public: meta_data
   user: huxiaoou_private
@@ -6,6 +8,10 @@ path_calendar: /root/workspace/Data/huxo/input/calendar/cne_calendar.csv
 target:
   name: c2
   freq: d
+
+optimizer:
+  window: 60
+  lbd: 1.00
 
 classification:
   c0: # must be unique in the project
