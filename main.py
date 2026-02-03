@@ -52,7 +52,6 @@ if __name__ == "__main__":
 
         main_process_signals_sec_opt(
             span=span,
-            codes=cfg.codes,
             data_desc_pv=data_desc_pv,
             data_desc_optimize=data_desc_optimize,
             clsf=cfg.target.clsf,

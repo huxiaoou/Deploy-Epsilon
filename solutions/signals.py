@@ -23,6 +23,9 @@ class CSignalsSecOpt(SignalStrategy):
         self.data_desc_pv: CDataDescriptor
         self.data_desc_optimize: CDataDescriptor
         super().__init__(data_desc_pv, data_desc_optimize, clsf)
+        self.sec_df = (
+            pd.DataFrame(self.clsf.instru_map).loc[self.data_desc_pv.codes, data_desc_optimize.codes].fillna(0)
+        )
 
     def init(self):
         self.add_clock(milestones="15:00:00")
@@ -33,12 +36,16 @@ class CSignalsSecOpt(SignalStrategy):
     def on_clock(self):
         wgt_sec = pd.Series(self.optimize.get_dict("wgt"))
         amt_ins = pd.Series(self.pv.get_dict("turnover"))
-        self.update_factor("wgt", 0.0)
+        rel_wgt = np.sqrt(amt_ins.fillna(0))
+        raw_wgt = self.sec_df.mul(rel_wgt, axis=0)
+        wgt_sum = raw_wgt.sum(axis=0)
+        nrm_wgt = (raw_wgt / wgt_sum).fillna(0)
+        wgt = nrm_wgt @ wgt_sec
+        self.update_factor("wgt", wgt[self.codes])
 
 
 def main_process_signals_sec_opt(
     span: tuple[str, str],
-    codes: list[str],
     data_desc_pv: CDataDescriptor,
     data_desc_optimize: CDataDescriptor,
     clsf: CSectorClassification,
@@ -47,7 +54,7 @@ def main_process_signals_sec_opt(
 ):
     cfg = {
         "span": span,
-        "codes": codes,
+        "codes": data_desc_pv.codes,
         "cache_data": False,
         "progress_bar": True,
     }
