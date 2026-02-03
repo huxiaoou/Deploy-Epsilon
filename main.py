@@ -4,7 +4,7 @@ from qtools_sxzq.qcalendar import CCalendar
 
 def parse_args():
     arg_parser = argparse.ArgumentParser(description="This project is designed to try sector allocation")
-    arg_parser.add_argument("command", type=str, choices=("optimize",))
+    arg_parser.add_argument("command", type=str, choices=("optimize", "sig"))
     arg_parser.add_argument("--bgn", type=str, required=True, help="begin date, format = 'YYYYMMDD'")
     arg_parser.add_argument("--end", type=str, default=None, help="end date, format = 'YYYYMMDD'")
     return arg_parser.parse_args()
@@ -21,7 +21,8 @@ if __name__ == "__main__":
     import sys
     from logbook import Logger, StreamHandler, set_datetime_format
     from qtools_sxzq.qwidgets import SFG
-    from config import cfg, data_desc_sector, data_desc_optimize
+    from config import cfg
+    from config import data_desc_pv, data_desc_sector, data_desc_optimize, data_desc_sig_opt
 
     StreamHandler(sys.stdout).push_application()
     set_datetime_format("local")
@@ -44,4 +45,16 @@ if __name__ == "__main__":
             data_desc_sector=data_desc_sector,
             dst_db=data_desc_optimize.db_name,
             table_optimize=data_desc_optimize.table_name,
+        )
+    elif args.command == "sig":
+        from solutions.signals import main_process_signals_sec_opt
+
+        main_process_signals_sec_opt(
+            span=span,
+            codes=cfg.codes,
+            data_desc_pv=data_desc_pv,
+            data_desc_optimize=data_desc_optimize,
+            clsf=cfg.target.clsf,
+            dst_db=data_desc_sig_opt.db_name,
+            table_sig_opt=data_desc_sig_opt.table_name,
         )

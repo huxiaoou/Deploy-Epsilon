@@ -33,8 +33,8 @@ cfg = CCfg(
 -------------------
 """
 
-data_desc_pv = CDataDescriptor(codes=[], **_config["src_tables"]["pv"])
-data_desc_pv1m = CDataDescriptor(codes=[], **_config["src_tables"]["pv1m"])
+data_desc_pv = CDataDescriptor(codes=cfg.codes, **_config["src_tables"]["pv"])
+data_desc_pv1m = CDataDescriptor(codes=cfg.codes, **_config["src_tables"]["pv1m"])
 
 """
 -----------------
@@ -46,12 +46,19 @@ data_desc_sector = cfg.target.get_data_desc(db_name=cfg.dbs.user)
 data_desc_optimize = CDataDescriptor(
     db_name=cfg.dbs.user,
     table_name=cfg.table_optimize,
-    codes=cfg.target.clsf.codes,
+    codes=cfg.target.clsf.sectors,
     fields=["wgt"],
     lag=120,
     data_view_type="data3d",
 )
-
+data_desc_sig_opt = CDataDescriptor(
+    db_name=cfg.dbs.user,
+    table_name=cfg.table_sig_opt,
+    codes=cfg.codes,
+    fields=["wgt"],
+    lag=120,
+    data_view_type="data3d",
+)
 if __name__ == "__main__":
     print(cfg)
     print(data_desc_pv)

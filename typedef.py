@@ -84,5 +84,13 @@ class CCfg:
     optimizer: CCfgOptimizer
 
     @property
+    def codes(self) -> list[str]:
+        return self.target.clsf.codes
+
+    @property
     def table_optimize(self) -> str:
         return f"{self.pid}_tbl_optimize_{self.vid}"
+
+    @property
+    def table_sig_opt(self) -> str:
+        return f"{self.pid}_tbl_sig_opt_{self.vid}"
