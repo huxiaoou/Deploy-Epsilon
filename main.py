@@ -60,7 +60,9 @@ if __name__ == "__main__":
         )
         logger.info(f"{SFG('Signals')} for {SFG(cfg.target.callsign)} optimized")
     elif args.command == "sim":
+        import os
         from solutions.csim import main_process_sim_cmplx
+        from solutions.eval import CMultiEvaluator
 
         exe_price, sig = "open", "wgt"
         main_process_sim_cmplx(
@@ -77,3 +79,17 @@ if __name__ == "__main__":
             vid=cfg.vid,
             using_sxzq_dlz=False,
         )
+
+        mulit_evaluator = CMultiEvaluator(
+            perf_paths=[
+                os.path.join(cfg.project_data_dir, "perfs", f"perf_{sig}-{exe_price}.{cfg.vid}.csv"),
+            ],
+            ret_lbl="日收益率",
+            date_lbl="date",
+            short_ids=["open", "close", "dual"],
+            by_year_ids=["dual"],
+            project_data_dir=cfg.project_data_dir,
+            src_id="csim",
+            vid=cfg.vid,
+        )
+        mulit_evaluator.main()
