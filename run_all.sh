@@ -27,3 +27,4 @@ bgn_date="20180102"
 
 python main.py optimize --bgn $bgn_date_opt --end $end_date
 python main.py sig --bgn $bgn_date --end $end_date
+python main.py sim --bgn $bgn_date --end $end_date

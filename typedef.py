@@ -79,6 +79,14 @@ class CCfgOptimizer:
 
 
 @dataclass(frozen=True)
+class CCfgBackTest:
+    cost_rate_sub: float
+    cost_rate_pri: float
+    init_cash: float
+    oi_cap_ratio: float
+
+
+@dataclass(frozen=True)
 class CCfg:
     pid: str
     vid: str
@@ -86,6 +94,8 @@ class CCfg:
     path_calendar: str
     target: CTarget
     optimizer: CCfgOptimizer
+    backtest: CCfgBackTest
+    project_data_dir: str
 
     @property
     def codes(self) -> list[str]:

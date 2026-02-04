@@ -1,8 +1,8 @@
 import yaml
-from qtools_sxzq.qdata import CDataDescriptor
+from qtools_sxzq.qdata import CDataDescriptor, CMarketDescriptor
 from typedef import TName, TClsData
 from typedef import CCfgDbs, CSectorClassification, TClassifications
-from typedef import CTarget, CCfgOptimizer
+from typedef import CTarget, CCfgOptimizer, CCfgBackTest
 from typedef import CCfg
 
 with open("config.yaml", "r") as f:
@@ -25,6 +25,8 @@ cfg = CCfg(
         clsf=d[_config["target"]["name"]],
     ),
     optimizer=CCfgOptimizer(**_config["optimizer"]),
+    backtest=CCfgBackTest(**_config["backtest"]),
+    project_data_dir=_config["project_data_dir"],
 )
 
 """
@@ -59,6 +61,30 @@ data_desc_sig_opt = CDataDescriptor(
     lag=120,
     data_view_type="data3d",
 )
+
+"""
+-----------------
+--- Back Test ---
+-----------------
+"""
+
+mkt_desc_fut = CMarketDescriptor(
+    matcher="daily",
+    ini_cash=cfg.backtest.init_cash,
+    fee_rate=cfg.backtest.cost_rate_pri,
+    account="detail",
+    data=(cfg.dbs.public, "future_bar_1day_aft"),
+    settle_price_table=(cfg.dbs.public, "future_bar_1day_aft"),
+    settle_price_field="close",
+    open_field="open",
+    close_field="close",
+    multiplier_field="multiplier",
+    limit_up_field="limit_up",
+    limit_down_field="limit_down",
+    dominant_contract_table=(cfg.dbs.public, "future_dominant"),
+)
+
+
 if __name__ == "__main__":
     print(cfg)
     print(data_desc_pv)

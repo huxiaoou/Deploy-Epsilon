@@ -4,6 +4,7 @@ dbs:
   public: meta_data
   user: huxiaoou_private
 path_calendar: /root/workspace/Data/huxo/input/calendar/cne_calendar.csv
+project_data_dir: /root/workspace/Data/huxo/Deploy-Epsilon
 
 target:
   name: c2
@@ -12,6 +13,12 @@ target:
 optimizer:
   window: 60
   lbd: 1.00
+
+backtest:
+  cost_rate_sub: 0.0000
+  cost_rate_pri: 0.0003
+  init_cash: 100_000_000.00
+  oi_cap_ratio: 0.01
 
 classification:
   c0: # must be unique in the project
@@ -402,8 +409,12 @@ src_tables:
     db_name: "meta_data"
     table_name: "future_bar_1day_aft"
     fields:
+      - "open"
+      - "close"
       - "turnover"
       - "pre_close_ret"
+      - "multiplier"
+      - "open_interest"
     lag: 20
     data_view_type: data3d
   pv1m:
