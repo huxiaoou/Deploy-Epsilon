@@ -5,6 +5,7 @@ from transmatrix.strategy import SignalStrategy
 from transmatrix.data_api import create_factor_table
 from qtools_sxzq.qdata import CDataDescriptor
 from typedef import CCfgOptimizer
+from solutions.math_tools import COptimizerSign
 
 
 class COptimizerSecWgt(SignalStrategy):
@@ -24,16 +25,19 @@ class COptimizerSecWgt(SignalStrategy):
         self.create_factor_table(["wgt"])
 
     def on_day_end(self):
-        self.optimize()
-        self.update_factor("wgt", self.opt_val)
-
-    def optimize(self):
         net_ret_data: pd.DataFrame = self.sec_data.get_window_df(
             field="ret",
             length=self.cfg_optimizer.window,
             codes=self.codes,
         )
-        self.opt_val = net_ret_data.mean()
+        if len(net_ret_data) < self.CONST_SAFE_RET_LENGTH:
+            self.update_factor("wgt", self.opt_val)
+        else:
+            m = net_ret_data.mean().to_numpy()
+            v = net_ret_data.cov().to_numpy()
+            optimizer = COptimizerSign(m, v)
+            res = optimizer.optimize()
+            self.update_factor("wgt", res)
 
 
 def main_process_optimize_sec_wgt(
