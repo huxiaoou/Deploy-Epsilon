@@ -48,7 +48,7 @@ class CSectorClassification:
     def get_save_data_desc(self, db_name: str, freq: TFreq) -> CDataDescriptor:
         return CDataDescriptor(
             db_name=db_name,
-            table_name=f"sector_{self.comb_name(freq)}",
+            table_name=f"sector_index_{self.comb_name(freq)}",
             codes=self.sectors,
             fields=["ret", "close"],
             lag=365,
