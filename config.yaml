@@ -11,7 +11,7 @@ target:
   freq: d
 
 optimizer:
-  window_m: 20
+  window_m: 5
   window_v: 240
   lbd: 10.00
 
