@@ -45,7 +45,7 @@ class CCovEstGL(_CCovEst):
     """
 
     def cov(self) -> np.ndarray:
-        c = GraphicalLassoCV(alphas=5, n_refinements=3, cv=5).fit(self.X)
+        c = GraphicalLassoCV(alphas=[0.1, 1.0, 10], cv=5).fit(self.X)
         return c.covariance_
 
 
