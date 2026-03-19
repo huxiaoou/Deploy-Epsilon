@@ -35,7 +35,7 @@ class COptimizerSecWgt(SignalStrategy):
         else:
             m = net_ret_data.tail(self.cfg_optimizer.window_m).mean().to_numpy()
             v = CCovEstLW(X=net_ret_data.tail(self.cfg_optimizer.window_v)).cov()
-            optimizer = COptimizerUtility(-m, v, self.cfg_optimizer.lbd)
+            optimizer = COptimizerUtility(m, v, self.cfg_optimizer.lbd)
             res = optimizer.optimize()
             self.update_factor("wgt", res)
 

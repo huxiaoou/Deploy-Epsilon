@@ -17,7 +17,7 @@ optimizer:
 
 backtest:
   cost_rate_sub: 0.0000
-  cost_rate_pri: 0.0003
+  cost_rate_pri: 0.0000
   init_cash: 100_000_000.00
   oi_cap_ratio: 0.01
 
