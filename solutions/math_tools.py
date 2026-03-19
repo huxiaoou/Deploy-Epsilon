@@ -58,12 +58,23 @@ class CCovEstGL(_CCovEst):
 
 class COptimizer:
     def __init__(self, m: np.ndarray, v: np.ndarray):
+        """_summary_
+
+        Args:
+            m (np.ndarray): estimation of returns on n assets, should be n by 1 vector(array).
+            v (np.ndarray): estimation of covariance on n assets, should be n by n matrix
+        """
         self.m = m
         self.v = v
         self.n = len(self.m)
 
     def optimize(self) -> np.ndarray:
         raise NotImplementedError
+
+
+class COptimizerEq(COptimizer):
+    def optimize(self) -> np.ndarray:
+        return np.ones(self.n) / self.n
 
 
 class COptimizerSign(COptimizer):
