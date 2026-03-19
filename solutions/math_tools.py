@@ -56,6 +56,13 @@ class CCovEstGL(_CCovEst):
 """
 
 
+def unify(w: np.ndarray) -> np.ndarray:
+    if (s := np.abs(w).sum()) > 0:
+        return w / s
+    else:
+        return w
+
+
 class COptimizer:
     def __init__(self, m: np.ndarray, v: np.ndarray):
         """_summary_
@@ -80,14 +87,25 @@ class COptimizerEq(COptimizer):
 class COptimizerSign(COptimizer):
     def optimize(self) -> np.ndarray:
         sgn = np.sign(self.m)
-        abs_sum = np.abs(sgn).sum()
-        return sgn / abs_sum if abs_sum > 0 else self.m
+        return unify(sgn)
 
 
-class COptimizerLbd(COptimizer):
+class COptimizerUtility(COptimizer):
     def __init__(self, m: np.ndarray, v: np.ndarray, lbd: float):
+        """_summary_
+
+        Args:
+            m (np.ndarray): _description_
+            v (np.ndarray): _description_
+            lbd (float): _description_
+
+            try to maxiumize the utiltiy function: w @ m - lbd * (w @ v @ w) /2
+        """
         super().__init__(m, v)
         self.lbd = lbd
+
+    def utility(self, w: np.ndarray) -> float:
+        return w @ self.m - self.lbd * (w @ self.v @ w) / 2  # type:ignore
 
     def optimize(self) -> np.ndarray:
         si = np.linalg.inv(self.v)
@@ -95,5 +113,5 @@ class COptimizerLbd(COptimizer):
         a = one @ si @ one
         b = one @ si @ self.m
         delta = (self.lbd - b) / a
-        w = si @ (self.m + delta * one) / self.lbd
-        return w
+        wo = si @ (self.m + delta * one) / self.lbd
+        return unify(wo)

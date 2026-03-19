@@ -5,7 +5,7 @@ from transmatrix.strategy import SignalStrategy
 from transmatrix.data_api import create_factor_table
 from qtools_sxzq.qdata import CDataDescriptor
 from typedef import CCfgOptimizer
-from solutions.math_tools import COptimizerSign
+from solutions.math_tools import COptimizerUtility
 
 
 class COptimizerSecWgt(SignalStrategy):
@@ -35,7 +35,7 @@ class COptimizerSecWgt(SignalStrategy):
         else:
             m = net_ret_data.mean().to_numpy()
             v = net_ret_data.cov().to_numpy()
-            optimizer = COptimizerSign(m, v)
+            optimizer = COptimizerUtility(m, v, self.cfg_optimizer.lbd)
             res = optimizer.optimize()
             self.update_factor("wgt", res)
 
