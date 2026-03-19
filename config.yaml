@@ -11,8 +11,8 @@ target:
   freq: d
 
 optimizer:
-  window: 60
-  lbd: 1.00
+  window: 240
+  lbd: 10.00
 
 backtest:
   cost_rate_sub: 0.0000
