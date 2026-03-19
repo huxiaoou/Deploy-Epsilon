@@ -11,7 +11,7 @@ target:
   freq: d
 
 optimizer:
-  window: 60
+  window: 240
   lbd: 1.00
 
 backtest:
