@@ -27,14 +27,14 @@ class COptimizerSecWgt(SignalStrategy):
     def on_day_end(self):
         net_ret_data: pd.DataFrame = self.sec_data.get_window_df(
             field="ret",
-            length=self.cfg_optimizer.window,
+            length=self.cfg_optimizer.lag,
             codes=self.codes,
         )
         if len(net_ret_data) < self.CONST_SAFE_RET_LENGTH:
             self.update_factor("wgt", self.opt_val)
         else:
-            m = net_ret_data.mean().to_numpy()
-            v = CCovEstLW(X=net_ret_data).cov()
+            m = net_ret_data.tail(self.cfg_optimizer.window_m).mean().to_numpy()
+            v = CCovEstLW(X=net_ret_data.tail(self.cfg_optimizer.window_v)).cov()
             optimizer = COptimizerUtility(m, v, self.cfg_optimizer.lbd)
             res = optimizer.optimize()
             self.update_factor("wgt", res)

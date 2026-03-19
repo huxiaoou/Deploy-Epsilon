@@ -74,8 +74,13 @@ class CTarget:
 
 @dataclass(frozen=True)
 class CCfgOptimizer:
-    window: int
+    window_m: int
+    window_v: int
     lbd: float
+
+    @property
+    def lag(self) -> int:
+        return max(self.window_m, self.window_v)
 
 
 @dataclass(frozen=True)
