@@ -93,3 +93,4 @@ if __name__ == "__main__":
             vid=cfg.vid,
         )
         mulit_evaluator.main()
+        print(cfg.optimizer)
