@@ -4,6 +4,44 @@ from typing import Union
 from sklearn.covariance import LedoitWolf, GraphicalLassoCV
 
 """
+-----------------------
+--- Mean Estimation ---
+-----------------------
+"""
+
+
+class _CMeanEst:
+    def __init__(self, X: Union[np.ndarray, pd.DataFrame]):
+        """_summary_
+
+        Args:
+            X (np.ndarray): a sample matrix, shape = (n_samples, k_features)
+        """
+        self.X = X.to_numpy() if isinstance(X, pd.DataFrame) else X
+        self.n, self.k = X.shape
+
+    def mean(self) -> np.ndarray:
+        raise NotImplementedError
+
+
+class CMeanSample(_CMeanEst):
+    def mean(self) -> np.ndarray:
+        return self.X.mean(axis=0)
+
+
+class CMeanLS(_CMeanEst):
+    def __init__(self, X: Union[np.ndarray, pd.DataFrame], lw: int, sw: int):
+        super().__init__(X)
+        self.lw, self.sw = lw, sw
+
+    def mean(self) -> np.ndarray:
+        ml = self.X[-self.lw :].mean(axis=0)
+        ms = self.X[-self.sw :].mean(axis=0)
+        r = np.sqrt(self.lw / self.sw)
+        return ml * r - ms
+
+
+"""
 -----------------------------
 --- Covariance Estimation ---
 -----------------------------
