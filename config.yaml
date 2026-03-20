@@ -11,13 +11,13 @@ target:
   freq: d
 
 optimizer:
-  window_m: 5
+  window_m: 240
   window_v: 240
-  lbd: 10.00
+  lbd: 100.00
 
 backtest:
   cost_rate_sub: 0.0000
-  cost_rate_pri: 0.0000
+  cost_rate_pri: 0.0003
   init_cash: 100_000_000.00
   oi_cap_ratio: 0.01
 
