@@ -33,8 +33,8 @@ class COptimizerSecWgt(SignalStrategy):
         if len(net_ret_data) < self.CONST_SAFE_RET_LENGTH:
             self.update_factor("wgt", self.opt_val)
         else:
-            ret_data_for_m = net_ret_data.tail(self.cfg_optimizer.window_m)
-            ret_data_for_v = net_ret_data.tail(self.cfg_optimizer.window_v)
+            ret_data_for_m = net_ret_data.tail(self.cfg_optimizer.window_m) * self.CONST_ANNUAL_FAC
+            ret_data_for_v = net_ret_data.tail(self.cfg_optimizer.window_v) * self.CONST_ANNUAL_FAC
             m = CMeanSample(X=ret_data_for_m).mean()
             v = CCovEstLW(X=ret_data_for_v).cov()
             optimizer = COptimizerUtility(m, v, self.cfg_optimizer.lbd)
