@@ -5,6 +5,7 @@ from transmatrix.strategy import SignalStrategy
 from transmatrix.data_api import create_factor_table
 from qtools_sxzq.qdata import CDataDescriptor
 from typedef import CSectorClassification
+from solutions.math_tools import unify
 
 """
 ------------------------------------
@@ -22,10 +23,11 @@ class CSignalsSecOpt(SignalStrategy):
     ):
         self.data_desc_pv: CDataDescriptor
         self.data_desc_optimize: CDataDescriptor
+        self.clsf: CSectorClassification
         super().__init__(data_desc_pv, data_desc_optimize, clsf)
         self.sec_df = (
             pd.DataFrame(self.clsf.instru_map).loc[self.data_desc_pv.codes, data_desc_optimize.codes].fillna(0)
-        )
+        )  # a pd.DataFrame with shape = (n_instruments, k_sectors)
 
     def init(self):
         self.add_clock(milestones="15:00:00")
@@ -34,13 +36,13 @@ class CSignalsSecOpt(SignalStrategy):
         self.create_factor_table(["wgt"])
 
     def on_clock(self):
-        wgt_sec = pd.Series(self.optimize.get_dict("wgt"))
-        amt_ins = pd.Series(self.pv.get_dict("turnover"))
+        wgt_sec = pd.Series(self.optimize.get_dict("wgt"))  # a Series with k sectors
+        amt_ins = pd.Series(self.pv.get_dict("turnover"))  # a Series with n instruments
         rel_wgt = np.sqrt(amt_ins.fillna(0))
         raw_wgt = self.sec_df.mul(rel_wgt, axis=0)
         wgt_sum = raw_wgt.sum(axis=0)
-        nrm_wgt = (raw_wgt / wgt_sum).fillna(0)
-        wgt = nrm_wgt @ wgt_sec
+        nrm_wgt = (raw_wgt / wgt_sum).fillna(0)  # a pd.DataFrame with shape = (n_instruments, k_sectors)
+        wgt = unify(nrm_wgt @ wgt_sec)
         self.update_factor("wgt", wgt[self.codes])
 
 
