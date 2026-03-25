@@ -41,6 +41,13 @@ class CMeanLS(_CMeanEst):
         return ml * r - ms
 
 
+class CMeanSharpe(_CMeanEst):
+    def mean(self) -> np.ndarray:
+        m = self.X.mean(axis=0)
+        v = self.X.std(axis=0)
+        return m / np.where(v > 0, v, np.inf)
+
+
 """
 -----------------------------
 --- Covariance Estimation ---
