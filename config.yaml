@@ -13,7 +13,7 @@ target:
 optimizer:
   window_m: 60
   window_v: 240
-  lbd: 0.1
+  lbd: 1.0
 
 backtest:
   cost_rate_sub: 0.0000
