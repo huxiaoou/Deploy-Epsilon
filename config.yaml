@@ -13,7 +13,7 @@ target:
 optimizer:
   window_m: 240
   window_v: 240
-  lbd: 0.16 # given return level
+  lbd: 0.20 # given return level
 
 backtest:
   cost_rate_sub: 0.0000
