@@ -76,8 +76,7 @@ class CTarget:
 class CCfgOptimizer:
     window_m: int
     window_v: int
-    lbd_sample: float
-    lbd_sharpe: float
+    lbd: float
 
     @property
     def lag(self) -> int:

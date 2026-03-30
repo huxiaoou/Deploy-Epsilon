@@ -1,3 +1,5 @@
+from re import M
+
 import numpy as np
 import pandas as pd
 from typing import Union
@@ -159,4 +161,39 @@ class COptimizerUtility(COptimizer):
         b = one @ si @ self.m
         delta = (self.lbd - b) / a
         wo = si @ (self.m + delta * one) / self.lbd
+        return unify(wo)
+
+
+class COptimizerGRL(COptimizer):
+    def __init__(self, m: np.ndarray, v: np.ndarray, u0: float):
+        """_summary_
+
+        Args:
+            m (np.ndarray): _description_
+            v (np.ndarray): _description_
+            u0 (float): Given Return Level
+
+            try to maxiumize the utiltiy function: w @ m - lbd * (w @ v @ w) /2
+        """
+        super().__init__(m, v)
+        self.u0 = u0
+
+    def validate(self, w: np.ndarray):
+        one = np.ones(self.n)
+        d0 = w @ one - 1
+        d1 = w @ self.m - self.u0
+        print(f"{d0=:.6f}, {d1=:.6f}")
+        return
+
+    def optimize(self) -> np.ndarray:
+        si = np.linalg.inv(self.v)
+        one = np.ones(self.n)
+        a = self.m @ si @ self.m
+        b = one @ si @ self.m
+        c = one @ si @ one
+        det = a * c - b * b
+
+        lbd = (c * self.u0 - b) / det
+        gma = (a - b * self.u0) / det
+        wo = si @ (lbd * self.m + gma * one)
         return unify(wo)
